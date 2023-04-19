@@ -14,7 +14,7 @@ public class Program2 {
 	public static void main(String[] args) throws SQLException, IOException {
 		Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/practice1db","root","root");
 		PreparedStatement statement=connection.prepareStatement("select * from image");
-		   int a=8;
+		   int a=1;
 		ResultSet  resultSet=statement.executeQuery();
 		while(resultSet.next()) {
 			System.out.println(resultSet.getInt(1));

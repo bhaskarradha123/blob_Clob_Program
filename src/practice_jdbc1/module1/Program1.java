@@ -8,27 +8,22 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Program1 {
-	//storing an image
-	
-	public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
-//		//load or register
-//		Class.forName("com.mysql.cj.jdbc.Driver");
-//		//establish connection
-		Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/practice1db","root","root");
-		//create statement
-		PreparedStatement statement=connection.prepareStatement("insert into image values(?,?)");
-		statement.setInt(1,4);
-		
-		FileInputStream fin=new FileInputStream("C:\\Users\\POOJARI MAHESH\\Pictures\\Camera Roll\\WIN_20220805_16_53_26_Pro.jpg");  
+	// storing an image through large blob ====blob taken as column datatype
 
-		statement.setBinaryStream(2,fin,fin.available());
-		//execute statement
+	public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
+
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/practice1db", "root", "root");
+		PreparedStatement statement = connection.prepareStatement("insert into image values(?,?)");
+		statement.setInt(1, 4);
+
+		FileInputStream fin = new FileInputStream(
+				"C:\\Users\\POOJARI MAHESH\\Pictures\\Camera Roll\\WIN_20220805_16_53_26_Pro.jpg");
+
+		statement.setBinaryStream(2, fin, fin.available());
 		statement.execute();
 		System.out.println("inserted");
-		//close the connection
 		statement.close();
 		connection.close();
-		
 
 	}
 
